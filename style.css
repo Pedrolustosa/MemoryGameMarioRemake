@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    background-image: url(background.jpg);
+}
+
+.memory-game {
+    height: 640px;
+    width: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px; /* perspectiva do usuário no eixo z, quanto maior, maior o efeito da perspectiva */
+}
+
+.card {
+    height: calc( 33.333% - 10px);
+    width: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    cursor: pointer;
+    transform: scale(1);
+    transform-style: preserve-3d; /* adiciona perspectiva 3D e, não deixa achatado*/
+    transition: transform .9s; /* adiciona efeito ao Flip do card */
+}
+
+.card:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background-image: linear-gradient(#f39c12, #bdc3c7);
+  backface-visibility: hidden; /* Irá retirar o verso */
+}
+
+.card-front {
+    transform: rotateY(180deg); /* Irão ficar com o verso virado, pois, aparece transparente por conta do position absolute antes ao girar no eixo Y */
+}
+
+/* Flip Card Animation */
+
+.card.flip {
+    transform: rotateY(180deg);
+}
